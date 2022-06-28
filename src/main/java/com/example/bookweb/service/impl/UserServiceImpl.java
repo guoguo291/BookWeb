@@ -24,4 +24,12 @@ public class UserServiceImpl implements UserService {
         }
         return false;
     }
+
+    @Override
+    public boolean auth(String username, String password) {
+        SqlSession sqlSession = MyBatisUtil.getSqlSession();
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+        Admin admin = mapper.getAdmin(username, password);
+        return admin != null;
+    }
 }

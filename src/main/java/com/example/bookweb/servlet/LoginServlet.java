@@ -34,6 +34,10 @@ public class LoginServlet extends HttpServlet {
             context.setVariable("failure",true);
             req.getSession().removeAttribute("login-failure");
         }
+        if (req.getSession().getAttribute("admin")!=null){
+            resp.sendRedirect("home");
+            return;
+        }
         ThymeleafUtil.process("login.html", context, resp.getWriter());
     }
 
@@ -42,8 +46,9 @@ public class LoginServlet extends HttpServlet {
         String username = req.getParameter("username");
         String password = req.getParameter("password");
         String remember = req.getParameter("remember-me");
-        if (userService.auth(username, password, req.getSession())){
-            resp.getWriter().write("Login Success!");
+        System.out.println("remember:"+remember);
+        if (remember!=null?userService.auth(username, password, req.getSession()):userService.auth(username, password)){
+            resp.sendRedirect("index");
         }else {
             req.getSession().setAttribute("login-failure",new Object());
             this.doGet(req, resp);
