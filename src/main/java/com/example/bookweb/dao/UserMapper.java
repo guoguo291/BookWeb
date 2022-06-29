@@ -1,6 +1,7 @@
 package com.example.bookweb.dao;
 
 import com.example.bookweb.entity.Admin;
+import com.example.bookweb.entity.User;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
@@ -10,6 +11,6 @@ import org.apache.ibatis.annotations.Select;
  * @Description:
  */
 public interface UserMapper {
-    @Select("select * from admin where username = #{username} and password = #{password}")
-    Admin getAdmin(@Param("username") String username,@Param("password") String password);
+    @Select("select * from user where username = #{username} and password = #{password}")
+    User getUser(@Param("username") String username, @Param("password") String password);
 }

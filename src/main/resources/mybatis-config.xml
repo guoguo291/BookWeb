@@ -15,6 +15,7 @@
         </environment>
     </environments>
     <mappers>
-        <mapper class="com.example.bookweb.dao.UserMapper"/>
+        <package name="com.example.bookweb.dao"/>
+        <!--<mapper class="com.example.bookweb.dao.UserMapper"/>-->
     </mappers>
 </configuration>

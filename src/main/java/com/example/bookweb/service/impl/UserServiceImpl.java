@@ -2,6 +2,7 @@ package com.example.bookweb.service.impl;
 
 import com.example.bookweb.dao.UserMapper;
 import com.example.bookweb.entity.Admin;
+import com.example.bookweb.entity.User;
 import com.example.bookweb.service.UserService;
 import com.example.bookweb.utils.MyBatisUtil;
 import jakarta.servlet.http.HttpSession;
@@ -17,9 +18,9 @@ public class UserServiceImpl implements UserService {
     public boolean auth(String username, String password, HttpSession session) {
         SqlSession sqlSession = MyBatisUtil.getSqlSession();
         UserMapper mapper = sqlSession.getMapper(UserMapper.class);
-        Admin admin = mapper.getAdmin(username, password);
-        if (admin!=null){
-            session.setAttribute("admin",admin);
+        User user = mapper.getUser(username, password);
+        if (user!=null){
+            session.setAttribute("user",user);
             return true;
         }
         return false;
@@ -29,7 +30,7 @@ public class UserServiceImpl implements UserService {
     public boolean auth(String username, String password) {
         SqlSession sqlSession = MyBatisUtil.getSqlSession();
         UserMapper mapper = sqlSession.getMapper(UserMapper.class);
-        Admin admin = mapper.getAdmin(username, password);
-        return admin != null;
+        User user = mapper.getUser(username, password);
+        return user != null;
     }
 }
