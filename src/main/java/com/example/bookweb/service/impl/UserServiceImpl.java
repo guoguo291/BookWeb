@@ -25,12 +25,4 @@ public class UserServiceImpl implements UserService {
         }
         return false;
     }
-
-    @Override
-    public boolean auth(String username, String password) {
-        SqlSession sqlSession = MyBatisUtil.getSqlSession();
-        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
-        User user = mapper.getUser(username, password);
-        return user != null;
-    }
 }
