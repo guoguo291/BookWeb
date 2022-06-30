@@ -13,4 +13,5 @@ public class Book {
     String title;
     String desc;
     double price;
+    String enable;//是否可借
 }

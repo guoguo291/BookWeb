@@ -1,5 +1,6 @@
 package com.example.bookweb.service;
 
+import com.example.bookweb.entity.Book;
 import com.example.bookweb.entity.Borrow;
 
 import java.util.List;
@@ -11,4 +12,5 @@ import java.util.List;
  */
 public interface BookService {
     List<Borrow> getBorrowList();
+    List<Book> getEnableBookList();
 }

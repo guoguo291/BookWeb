@@ -1,5 +1,6 @@
 package com.example.bookweb.dao;
 
+import com.example.bookweb.entity.Book;
 import com.example.bookweb.entity.Borrow;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
@@ -23,4 +24,14 @@ public interface BookMapper {
     })
     @Select("select * from borrow,student,book where borrow.bid = book.bid and student.sid = borrow.sid")
     List<Borrow> getBorrowList();
+
+    @Results({
+            @Result(column = "bid",property = "bid"),
+            @Result(column = "price",property = "price"),
+            @Result(column = "title",property = "title"),
+            @Result(column = "desc",property = "desc"),
+            @Result(column = "enable",property = "enable")
+    })
+    @Select("select * from book where enable = '是'")
+    List<Book> getEnableBookList();
 }
