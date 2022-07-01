@@ -1,5 +1,6 @@
 package com.example.bookweb.service.impl;
 
+import com.example.bookweb.dao.BookMapper;
 import com.example.bookweb.dao.BorrowMapper;
 import com.example.bookweb.service.BorrowService;
 import com.example.bookweb.utils.MyBatisUtil;
@@ -21,10 +22,13 @@ public class BorrowServiceImpl implements BorrowService {
     }
 
     @Override
-    public void deleteBorrow(String id) {
-        try (SqlSession sqlSession = MyBatisUtil.getSqlSession()) {
-            BorrowMapper mapper = sqlSession.getMapper(BorrowMapper.class);
-            mapper.deleteBorrow(id);
+    public void deleteBorrow(String id,String bid) {
+        try (SqlSession sqlSession = MyBatisUtil.getSqlSession(false)) {
+            BorrowMapper borrowMapper = sqlSession.getMapper(BorrowMapper.class);
+            BookMapper bookMapper = sqlSession.getMapper(BookMapper.class);
+            borrowMapper.deleteBorrow(id);
+            bookMapper.updateBookStatus("是",bid);
+            sqlSession.commit();
         }
     }
 }

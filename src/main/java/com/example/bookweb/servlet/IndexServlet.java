@@ -2,6 +2,7 @@ package com.example.bookweb.servlet;
 
 import com.example.bookweb.entity.User;
 import com.example.bookweb.service.impl.BookServiceImpl;
+import com.example.bookweb.service.impl.StudentServiceImpl;
 import com.example.bookweb.utils.ThymeleafUtil;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -19,10 +20,12 @@ import java.io.IOException;
  */
 @WebServlet("/index")
 public class IndexServlet extends HttpServlet {
-    BookServiceImpl service;
+    BookServiceImpl bookService;
+    StudentServiceImpl studentService;
     @Override
     public void init() throws ServletException {
-        service=new BookServiceImpl();
+        bookService=new BookServiceImpl();
+        studentService=new StudentServiceImpl();
     }
 
     @Override
@@ -31,8 +34,10 @@ public class IndexServlet extends HttpServlet {
         Context context = new Context();
         User user = (User) req.getSession().getAttribute("user");
         context.setVariable("nickname", user.getNickname());
-        context.setVariable("borrow_list", service.getBorrowList());
-        System.out.println("borrow_list:"+service.getBorrowList());
+        context.setVariable("borrow_list", bookService.getBorrowList());
+        context.setVariable("student_count", studentService.countStudents());
+        context.setVariable("book_count", bookService.countBooks());
+        System.out.println("borrow_list:"+bookService.getBorrowList());
         ThymeleafUtil.process("index.html", context, resp.getWriter());
     }
 

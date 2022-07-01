@@ -16,13 +16,15 @@ import java.util.List;
 public class StudentServiceImpl implements StudentService {
     private StudentMapper mapper;
     public StudentServiceImpl() {
-        SqlSession sqlSession = MyBatisUtil.getSqlSession();
-        mapper = sqlSession.getMapper(StudentMapper.class);
+
     }
 
     @Override
     public int countStudents() {
-        return mapper.countStudents();
+        try (SqlSession sqlSession = MyBatisUtil.getSqlSession()){
+            mapper = sqlSession.getMapper(StudentMapper.class);
+            return mapper.countStudents();
+        }
     }
 
     @Override

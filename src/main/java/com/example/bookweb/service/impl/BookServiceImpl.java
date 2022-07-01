@@ -39,4 +39,12 @@ public class BookServiceImpl implements BookService {
             return bookMapper.updateBookStatus(enable,bid);
         }
     }
+
+    @Override
+    public int countBooks() {
+        try (SqlSession sqlSession = MyBatisUtil.getSqlSession()) {
+            BookMapper bookMapper = sqlSession.getMapper(BookMapper.class);
+            return bookMapper.countBooks();
+        }
+    }
 }

@@ -9,5 +9,5 @@ import org.apache.ibatis.annotations.Param;
  */
 public interface BorrowService {
     void addBorrow(int sid,int bid);
-    void deleteBorrow(String id);
+    void deleteBorrow(String id,String bid);
 }

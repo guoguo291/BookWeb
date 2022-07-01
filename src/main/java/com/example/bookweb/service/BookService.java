@@ -14,4 +14,5 @@ public interface BookService {
     List<Borrow> getBorrowList();
     List<Book> getEnableBookList();
     boolean updateBookStatus(String enable,String id);
+    int countBooks();
 }

@@ -34,5 +34,8 @@ public interface BookMapper {
     List<Book> getEnableBookList();
 
     @Update("update book set enable = #{enable} where bid =#{bid}")
-    boolean updateBookStatus(@Param("enable") String enable,@Param("bid") String id);
+    boolean updateBookStatus(@Param("enable") String enable,@Param("bid") String bid);
+
+    @Select("select count(*) from book")
+    int countBooks();
 }
