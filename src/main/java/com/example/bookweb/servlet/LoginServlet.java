@@ -42,7 +42,7 @@ public class LoginServlet extends HttpServlet {
             }
             if (username!=null&&password!=null){
                 if (userService.auth(username,password, req.getSession())) {
-                    resp.sendRedirect("index");
+                    resp.sendRedirect("home");
                     return;
                 }
             }
@@ -53,7 +53,7 @@ public class LoginServlet extends HttpServlet {
             req.getSession().removeAttribute("login-failure");
         }
         if(req.getSession().getAttribute("user") != null) {
-            resp.sendRedirect("index");
+            resp.sendRedirect("home");
             return;
         }
         ThymeleafUtil.process("login.html", context, resp.getWriter());
@@ -75,7 +75,7 @@ public class LoginServlet extends HttpServlet {
                 resp.addCookie(cookie_password);
             }
             log.info("LoginServlet:"+"auth success!!!");
-            resp.sendRedirect("index");
+            resp.sendRedirect("home");
         }else {
             log.info("LoginServlet:\"+\"auth fail!!!");
             req.getSession().setAttribute("login-failure",new Object());

@@ -15,10 +15,10 @@
         </environment>
     </environments>
     <mappers>
-       <!-- <package name="com.example.bookweb.dao"/>-->
-        <mapper class="com.example.bookweb.dao.BookMapper"/>
+        <package name="com.example.bookweb.dao"/>
+        <!--<mapper class="com.example.bookweb.dao.BookMapper"/>
         <mapper class="com.example.bookweb.dao.UserMapper"/>
         <mapper class="com.example.bookweb.dao.StudentMapper"/>
-        <mapper class="com.example.bookweb.dao.BorrowMapper"/>
+        <mapper class="com.example.bookweb.dao.BorrowMapper"/>-->
     </mappers>
 </configuration>
