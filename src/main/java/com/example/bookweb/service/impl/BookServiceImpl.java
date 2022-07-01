@@ -33,6 +33,14 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
+    public List<Book> getBookList() {
+        try (SqlSession sqlSession = MyBatisUtil.getSqlSession()) {
+            BookMapper bookMapper = sqlSession.getMapper(BookMapper.class);
+            return bookMapper.getBookList();
+        }
+    }
+
+    @Override
     public boolean updateBookStatus(String enable, String bid) {
         try (SqlSession sqlSession = MyBatisUtil.getSqlSession()) {
             BookMapper bookMapper = sqlSession.getMapper(BookMapper.class);
@@ -45,6 +53,14 @@ public class BookServiceImpl implements BookService {
         try (SqlSession sqlSession = MyBatisUtil.getSqlSession()) {
             BookMapper bookMapper = sqlSession.getMapper(BookMapper.class);
             return bookMapper.countBooks();
+        }
+    }
+
+    @Override
+    public int addBook(int bid, String title, String desc, double price) {
+        try (SqlSession sqlSession = MyBatisUtil.getSqlSession()) {
+            BookMapper bookMapper = sqlSession.getMapper(BookMapper.class);
+            return bookMapper.addBook(bid, title, desc, price);
         }
     }
 }

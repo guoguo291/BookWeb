@@ -13,6 +13,8 @@ import java.util.List;
 public interface BookService {
     List<Borrow> getBorrowList();
     List<Book> getEnableBookList();
+    List<Book> getBookList();
     boolean updateBookStatus(String enable,String id);
     int countBooks();
+    int addBook(int bid,String title,String desc,double price);
 }

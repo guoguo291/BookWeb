@@ -33,9 +33,21 @@ public interface BookMapper {
     @Select("select * from book where enable = '是'")
     List<Book> getEnableBookList();
 
+    @Results({
+            @Result(column = "bid",property = "bid"),
+            @Result(column = "price",property = "price"),
+            @Result(column = "title",property = "title"),
+            @Result(column = "desc",property = "desc"),
+            @Result(column = "enable",property = "enable")
+    })
+    @Select("select * from book")
+    List<Book> getBookList();
+
     @Update("update book set enable = #{enable} where bid =#{bid}")
     boolean updateBookStatus(@Param("enable") String enable,@Param("bid") String bid);
 
     @Select("select count(*) from book")
     int countBooks();
+    @Insert("insert into book(bid, title, `desc`, price) values (#{bid}, #{title}, #{desc}, #{price})")
+    int addBook(@Param("bid")int bid,@Param("title")String title,@Param("desc")String desc,@Param("price")double price);
 }

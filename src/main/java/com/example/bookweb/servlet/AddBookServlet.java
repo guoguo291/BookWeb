@@ -1,0 +1,42 @@
+package com.example.bookweb.servlet;
+
+import com.example.bookweb.service.impl.BookServiceImpl;
+import com.example.bookweb.utils.ThymeleafUtil;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import org.thymeleaf.context.Context;
+
+import java.io.IOException;
+
+/**
+ * @Author:guoj
+ * @Time: 2022/7/1
+ * @Description:
+ */
+@WebServlet("/add-book")
+public class AddBookServlet extends HttpServlet {
+    BookServiceImpl bookService;
+    @Override
+    public void init() throws ServletException {
+        bookService = new BookServiceImpl();
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        Context context = new Context();
+        ThymeleafUtil.process("add-book.html",context, resp.getWriter());
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String bid = req.getParameter("bid");
+        String title = req.getParameter("title");
+        String desc=req.getParameter("desc");
+        String price = req.getParameter("price");
+        bookService.addBook(Integer.parseInt(bid),title,desc,Double.parseDouble(price));
+        resp.sendRedirect("books");
+    }
+}

@@ -134,8 +134,8 @@
                                                     <td th:text="${book.getDesc()}">$600</td>
                                                     <td th:text="'￥'+${book.getPrice()}">$600</td>
                                                     <td>
-                                                        <label class="mb-0 badge badge-primary" title="" data-original-title="Pending" th:if="${book_list_status.get(iterStat.index)}">正在借阅</label>
-                                                        <label class="mb-0 badge badge-success" title="" data-original-title="Pending" th:unless="${book_list_status.get(iterStat.index)}">可借阅</label>
+                                                        <label class="mb-0 badge badge-primary" title="" data-original-title="Pending" th:if="${book.getEnable().equals('否')}">正在借阅</label>
+                                                        <label class="mb-0 badge badge-success" title="" data-original-title="Pending" th:unless="${book.getEnable().equals('否')}">可借阅</label>
                                                     </td>
                                                     <td class="relative">
                                                         <a class="action-btn " th:href="'delete-book?bid='+${book.getBid()}">

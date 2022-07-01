@@ -14,21 +14,20 @@ import java.util.List;
  * @Description:
  */
 public class StudentServiceImpl implements StudentService {
-    private StudentMapper mapper;
-    public StudentServiceImpl() {
-
-    }
-
     @Override
     public int countStudents() {
         try (SqlSession sqlSession = MyBatisUtil.getSqlSession()){
-            mapper = sqlSession.getMapper(StudentMapper.class);
+            StudentMapper mapper = sqlSession.getMapper(StudentMapper.class);
             return mapper.countStudents();
         }
     }
 
     @Override
     public List<Student> getStudentList() {
-        return mapper.getStudentList();
+        try(SqlSession sqlSession = MyBatisUtil.getSqlSession()){
+            StudentMapper mapper = sqlSession.getMapper(StudentMapper.class);
+            return mapper.getStudentList();
+        }
+
     }
 }
