@@ -2,9 +2,7 @@ package com.example.bookweb.dao;
 
 import com.example.bookweb.entity.Book;
 import com.example.bookweb.entity.Borrow;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -34,4 +32,7 @@ public interface BookMapper {
     })
     @Select("select * from book where enable = '是'")
     List<Book> getEnableBookList();
+
+    @Update("update book set enable = #{enable} where bid =#{bid}")
+    boolean updateBookStatus(@Param("enable") String enable,@Param("bid") String id);
 }

@@ -19,5 +19,6 @@
         <mapper class="com.example.bookweb.dao.BookMapper"/>
         <mapper class="com.example.bookweb.dao.UserMapper"/>
         <mapper class="com.example.bookweb.dao.StudentMapper"/>
+        <mapper class="com.example.bookweb.dao.BorrowMapper"/>
     </mappers>
 </configuration>

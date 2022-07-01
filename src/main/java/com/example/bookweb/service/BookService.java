@@ -13,4 +13,5 @@ import java.util.List;
 public interface BookService {
     List<Borrow> getBorrowList();
     List<Book> getEnableBookList();
+    boolean updateBookStatus(String enable,String id);
 }

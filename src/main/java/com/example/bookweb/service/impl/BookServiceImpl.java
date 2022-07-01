@@ -15,20 +15,28 @@ import java.util.List;
  * @Description:
  */
 public class BookServiceImpl implements BookService {
-    private BookMapper bookMapper;
-    public BookServiceImpl() {
-        SqlSession sqlSession = MyBatisUtil.getSqlSession();
-        bookMapper = sqlSession.getMapper(BookMapper.class);
-    }
 
     @Override
     public List<Borrow> getBorrowList() {
-
-        return bookMapper.getBorrowList();
+        try (SqlSession sqlSession = MyBatisUtil.getSqlSession()) {
+            BookMapper bookMapper = sqlSession.getMapper(BookMapper.class);
+            return bookMapper.getBorrowList();
+        }
     }
 
     @Override
     public List<Book> getEnableBookList() {
-        return bookMapper.getEnableBookList();
+        try (SqlSession sqlSession = MyBatisUtil.getSqlSession()) {
+            BookMapper bookMapper = sqlSession.getMapper(BookMapper.class);
+            return bookMapper.getEnableBookList();
+        }
+    }
+
+    @Override
+    public boolean updateBookStatus(String enable, String bid) {
+        try (SqlSession sqlSession = MyBatisUtil.getSqlSession()) {
+            BookMapper bookMapper = sqlSession.getMapper(BookMapper.class);
+            return bookMapper.updateBookStatus(enable,bid);
+        }
     }
 }

@@ -3,6 +3,7 @@ package com.example.bookweb.servlet;
 import com.example.bookweb.entity.Book;
 import com.example.bookweb.entity.Student;
 import com.example.bookweb.service.impl.BookServiceImpl;
+import com.example.bookweb.service.impl.BorrowServiceImpl;
 import com.example.bookweb.service.impl.StudentServiceImpl;
 import com.example.bookweb.utils.ThymeleafUtil;
 import jakarta.servlet.ServletException;
@@ -24,12 +25,14 @@ import java.util.List;
 @WebServlet("/add-borrow")
 public class AddBorrowServlet extends HttpServlet {
     private BookServiceImpl bookService;
+    private BorrowServiceImpl borrowService;
     private StudentServiceImpl studentService;
 
     @Override
     public void init() throws ServletException {
         bookService = new BookServiceImpl();
         studentService = new StudentServiceImpl();
+        borrowService=new BorrowServiceImpl();
     }
 
     @Override
@@ -49,7 +52,10 @@ public class AddBorrowServlet extends HttpServlet {
         log("========sid:"+sid);
         log("========bid:"+bid);
         if (sid!=null&&bid!=null){
-
+            borrowService.addBorrow(Integer.parseInt(sid),Integer.parseInt(bid));
+            boolean updateBookStatus = bookService.updateBookStatus("否", bid);
+            log("========bookService.updateBookStatus:"+updateBookStatus);
+            resp.sendRedirect("index");
         }
     }
 }
