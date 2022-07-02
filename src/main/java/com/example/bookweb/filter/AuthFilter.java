@@ -1,12 +1,8 @@
 package com.example.bookweb.filter;
 
-import com.example.bookweb.entity.Admin;
 import com.example.bookweb.entity.User;
-import com.sun.org.apache.bcel.internal.generic.IF_ACMPEQ;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.ServletRequest;
-import jakarta.servlet.ServletResponse;
 import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.http.HttpFilter;
 import jakarta.servlet.http.HttpServletRequest;

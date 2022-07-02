@@ -39,7 +39,7 @@
             <div class="side-menu-wrap">
                 <ul class="main-menu">
                     <li>
-                        <a href="index" class="active">
+                        <a href="home" class="active">
                             <span class="icon-menu feather-icon">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
                             </span>
@@ -50,7 +50,7 @@
                     </li>
                     
                     <li>
-                        <a href="books">
+                        <a href="terminals">
                             <span class="icon-menu feather-icon">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-package"><line x1="16.5" y1="9.4" x2="7.5" y2="4.21"></line><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
                             </span>
@@ -60,7 +60,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="students">
+                        <a href="merchants">
                             <span class="icon-menu feather-icon">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
                             </span>
@@ -233,9 +233,9 @@
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="card chart-card">
                             <div class="card-header">
-                                <h4 class="has-btn">绑定终端列表
+                                <h4  class="has-btn">绑定终端列表
                                     <span>
-                                            <a type="button" href="add-borrow" class="btn btn-primary squer-btn sm-btn">绑定新终端</a>
+                                            <a type="button" href="bind-terminal" class="btn btn-primary squer-btn sm-btn">绑定新终端</a>
                                         </span>
                                 </h4>
                             </div>
@@ -261,7 +261,7 @@
                                                     <td th:text="${bindTerminal.getMerchant_name()}">大悦城探探火锅</td>
                                                     <td th:text="'#'+${bindTerminal.getMerchant_id()}">332456789011223</td>
                                                     <td class="relative">
-                                                        <a class="action-btn " th:href="'return-book?id='+${bindTerminal.getId()}+'&tid='+${bindTerminal.getTerminal_id()}">
+                                                        <a class="action-btn " th:href="'unbind-terminal?id='+${bindTerminal.getId()}+'&tid='+${bindTerminal.getTerminal_id()}">
                                                             <svg class="default-size " viewbox="0 0 341.333 341.333 ">
                                                                 <g>
                                                                     <g>

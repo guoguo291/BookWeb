@@ -28,7 +28,7 @@ public interface TerminalMapper {
     @Results({
             @Result(column = "bid",property = "bid"),
             @Result(column = "price",property = "price"),
-            @Result(column = "title",property = "title"),
+            @Result(column = "device_name",property = "name"),
             @Result(column = "desc",property = "desc"),
             @Result(column = "enable",property = "enable")
     })
@@ -36,9 +36,9 @@ public interface TerminalMapper {
     List<Terminal> getEnableTerminalList();
 
     @Results({
-            @Result(column = "bid",property = "bid"),
+            @Result(column = "tid",property = "tid"),
             @Result(column = "price",property = "price"),
-            @Result(column = "title",property = "title"),
+            @Result(column = "device_name",property = "name"),
             @Result(column = "desc",property = "desc"),
             @Result(column = "enable",property = "enable")
     })
@@ -50,6 +50,6 @@ public interface TerminalMapper {
 
     @Select("select count(*) from terminal")
     int countTerminals();
-    @Insert("insert into terminal(tid, device_name, `desc`, price) values (#{tid}, #{device_name}, #{desc}, #{price})")
+    @Insert("insert into terminal(tid, device_name, `desc`, price,enable) values (#{tid}, #{device_name}, #{desc}, #{price},1)")
     int addTerminal(@Param("tid")int tid,@Param("device_name")String device_name,@Param("desc")String desc,@Param("price")double price);
 }
